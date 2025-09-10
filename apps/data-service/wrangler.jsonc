@@ -1,7 +1,3 @@
-/**
- * For more details on how to configure Wrangler, refer to:
- * https://developers.cloudflare.com/workers/wrangler/configuration/
- */
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
 	"name": "data-service",
@@ -40,5 +36,8 @@
 			"name": "destination-evaluation-workflow",
 			"class_name": "DestinationEvaluationWorkflow"
 		}
-	]
+	],
+	"browser": {
+		"binding": "VIRTUAL_BROWSER"
+	}
 }
