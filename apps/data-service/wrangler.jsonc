@@ -64,11 +64,11 @@
 	"migrations": [
 		{
 			"tag": "v1",
-			"new_classes": ["EvaluationScheduler"]
+			"new_sqlite_classes": ["EvaluationScheduler"]
 		},
 		{
 			"tag": "v2",
-			"new_classes": ["LinkClickTracker"]
+			"new_sqlite_classes": ["LinkClickTracker"]
 		}
 	]
 }
