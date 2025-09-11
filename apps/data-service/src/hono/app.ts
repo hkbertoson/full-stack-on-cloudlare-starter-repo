@@ -13,6 +13,24 @@ App.get('/link-click/:accountId', async (c) => {
 	return await stub.fetch(c.req.raw)
 })
 
+App.get('/test', async (c) => {
+	return c.text('Hello World!')
+})
+
+App.get('/click-socket', async (c) => {
+	const upgradeHeader = c.req.header('Upgrade');
+	if (!upgradeHeader || upgradeHeader !== 'websocket') {
+		return c.text('Expected Upgrade: websocket', 426)
+	}
+
+	const accountId = "123456890"
+	if (!accountId) return c.text('No Headers', 404)
+	const doId = c.env.LINK_CLICK_TRACKER_OBJECT.idFromName(accountId)
+	const stub = c.env.LINK_CLICK_TRACKER_OBJECT.get(doId)
+	return await stub.fetch(c.req.raw)
+})
+
+// Catch-all route - must be last to avoid matching specific routes above
 App.get("/:id", async (c) => {
 	const id = c.req.param("id");
 
@@ -45,17 +63,4 @@ App.get("/:id", async (c) => {
 	c.executionCtx.waitUntil(c.env.QUEUE.send(queueMessage))
 	return c.redirect(destination);
 });
-
-App.get('/click-socket', async (c) => {
-	const upgradeHeader = c.req.header('Upgrade');
-	if (!upgradeHeader || upgradeHeader !== 'websocket') {
-		return c.text('Expected Upgrade: websocket', 426)
-	}
-
-	const accountId = c.req.header('account-id')
-	if (!accountId) return c.text('No Headers', 404)
-	const doId = c.env.LINK_CLICK_TRACKER_OBJECT.idFromName(accountId)
-	const stub = c.env.LINK_CLICK_TRACKER_OBJECT.get(doId)
-	return await stub.fetch(c.req.raw)
-})
 
