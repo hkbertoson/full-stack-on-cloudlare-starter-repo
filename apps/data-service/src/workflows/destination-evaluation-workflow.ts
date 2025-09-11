@@ -50,8 +50,10 @@ export class DestinationEvaluationWorkflow extends WorkflowEntrypoint<
 			const accountId = event.payload.accountId;
 			const r2PathHtml = `evaluations/${accountId}/html/${evalutationId}`;
 			const r2PathBodyText = `evaluations/${accountId}/body-text/${evalutationId}`;
+			const r2PathScreenshot = `evaluations/${accountId}/screenshot/${evalutationId}`;
 			await this.env.BUCKET.put(r2PathHtml, collectedData.html)
 			await this.env.BUCKET.put(r2PathBodyText, collectedData.bodyText)
+			await this.env.BUCKET.put(r2PathScreenshot, collectedData.screenshotDataUrl)
 		})
 	}
 };
