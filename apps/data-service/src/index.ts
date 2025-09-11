@@ -6,6 +6,8 @@ import { App } from "./hono/app";
 
 export { DestinationEvaluationWorkflow } from "@/workflows/destination-evaluation-workflow";
 
+export { EvaluationScheduler } from "./durable-objects/evaluation-scheduler";
+
 export default class DataService extends WorkerEntrypoint<Env> {
 	constructor(ctx: ExecutionContext, env: Env) {
 		super(ctx, env);
