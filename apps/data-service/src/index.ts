@@ -4,10 +4,9 @@ import { QueueMessageSchema } from "@repo/data-ops/zod-schema/queue";
 import { handleLinkClick } from "@/queue-handlers/link-clicks";
 import { App } from "./hono/app";
 
-export { DestinationEvaluationWorkflow } from "@/workflows/destination-evaluation-workflow";
-
 export { EvaluationScheduler } from "@/durable-objects/evaluation-scheduler";
-export { LinkClickTracker } from '@/durable-objects/link-click-tracker'
+export { LinkClickTracker } from "@/durable-objects/link-click-tracker";
+export { DestinationEvaluationWorkflow } from "@/workflows/destination-evaluation-workflow";
 
 export default class DataService extends WorkerEntrypoint<Env> {
 	constructor(ctx: ExecutionContext, env: Env) {
